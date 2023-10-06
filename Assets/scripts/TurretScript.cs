@@ -97,6 +97,7 @@
 
 //}
 
+using JetBrains.Annotations;
 using UnityEngine;
 
 public class TurretScript : MonoBehaviour
@@ -120,6 +121,8 @@ public class TurretScript : MonoBehaviour
 
     public GameObject bulletPrefab;
     public Transform firePoint;
+
+    //public ColorChanger playerColor;
 
 
 
@@ -178,13 +181,20 @@ public class TurretScript : MonoBehaviour
     }
 
 
+ 
+
     void Shoot()
     {
+        
+        
         Debug.Log("Shoot!");
 
-       GameObject bulletGO = (GameObject) Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+        
 
+        GameObject bulletGO = GameObject.Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+        //bulletGO.GetComponent<MeshRenderer>().material.color = EnemyColor.EnemyColor;
         BulletScript bullet = bulletGO.GetComponent<BulletScript>();
+        //bullet.GetComponent<MeshRenderer>().material.color = playerColor.playerColor;    
 
         if (bullet != null)
             bullet.Seek(target);
